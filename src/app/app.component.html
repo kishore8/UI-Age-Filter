@@ -1,0 +1,71 @@
+<div class="container-fluid">
+  <div class="container-fluid header-section">
+    <h6>Citizen Age</h6>
+  <div class="row">
+      <div class="col-md-4">  
+    <div class="row header-styles text-center">
+      
+        <div class="col-md-3" [ngClass]= "{'applyFilter': isbelowTwentyClicked}" (click)="isFilterClicked($event, '20')">
+      <h5>{{count && count.belowTwenty}}</h5>
+      <span>below 20Yrs</span>
+    </div>
+    
+    <div class="col-md-3" [ngClass]= "{'applyFilter': isTwentyToFourtyClicked}" (click)="isFilterClicked($event, '20-40')">
+       <h5>{{count && count.twentyToFourty}}</h5> 
+        <span>20 to 40Yrs</span>
+      </div>
+      
+    <div class="col-md-3" [ngClass]= "{'applyFilter': isFourtyToSixtyClicked}" (click)="isFilterClicked($event, '40-60')">
+        <h5>{{count && count.fourtyToSixty}}</h5>
+        <span>40 to 60Yrs</span>
+      </div>
+      
+    <div class="col-md-3" [ngClass]= "{'applyFilter': isaboveSixtyClicked}" (click)="isFilterClicked($event, '60')">
+        <h5>{{count && count.aboveSixty}}</h5>
+        <span>above 60Yrs</span>
+      </div>
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4"></div>
+    </div>
+    </div>
+  </div>
+
+  <div class="container-fluid grid-class">
+      <mat-chip-list *ngFor="let chip of chipsData; let i = index" #chipList>
+        <mat-chip>{{chipDisplayValue(chip)}} <i class="fa fa-times" (click)="removeChip(i,chip)"></i></mat-chip>
+      </mat-chip-list>
+      <table class="table ui-table">
+        
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Description</th>
+              <th scope="col" (click)="sortData('asc')" *ngIf="!sortReverse"><i class="fa fa-filter age-filter" aria-hidden="true"></i>Age<i class="fa fa-fw fa-sort-up sort"></i></th>
+              <th scope="col" (click)="sortData('desc')" *ngIf="sortReverse"><i class="fa fa-filter age-filter" aria-hidden="true"></i>Age <i class="fa fa-fw fa-sort-down sort"></i></th>
+              
+              
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let employee of gridData">
+              <td>{{employee.id}}</td>
+              <td><span class="name-icon"></span>{{employee.name}}</td>
+              <td>{{employee.desc}}</td>
+              <td>{{employee.age}}</td>
+              <td><button class="btn">Edit</button></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5"></td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    
+
+</div>
